@@ -12,6 +12,7 @@ const { t } = useI18n();
 const form = ref();
 const showAccessKeyId = ref(false);
 const showSecretAccessKey = ref(false);
+const showSessionToken = ref(false);
 
 const uploadChipColor = ref<"green" | "red" | "gray">("gray");
 const listChipColor = ref<"green" | "red" | "gray">("gray");
@@ -255,6 +256,31 @@ async function onSubmit(_event: FormSubmitEvent<Schema>) {
           :icon="showSecretAccessKey ? 'i-heroicons-eye' : 'i-heroicons-eye-slash'"
           color="gray"
           @click="showSecretAccessKey = !showSecretAccessKey"
+        />
+      </UButtonGroup>
+    </UFormGroup>
+
+    <UFormGroup
+      v-slot="{ error }"
+      :label="$t('settings.s3.form.sessionToken.title')"
+      name="sessionToken"
+      required
+      :error="!state.sessionToken && $t('settings.s3.form.sessionToken.error')"
+    >
+      <UButtonGroup class="w-full">
+        <UInput
+          v-model="state.sessionToken"
+          class="w-full"
+          :type="showSessionToken ? 'text' : 'password'"
+          :trailing-icon="
+            error ? 'i-heroicons-exclamation-triangle-20-solid' : undefined
+          "
+        />
+        <!-- prettier-ignore-attribute :icon -->
+        <UButton
+          :icon="showSessionToken ? 'i-heroicons-eye' : 'i-heroicons-eye-slash'"
+          color="gray"
+          @click="showSessionToken = !showSessionToken"
         />
       </UButtonGroup>
     </UFormGroup>

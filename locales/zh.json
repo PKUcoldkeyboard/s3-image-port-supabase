@@ -198,6 +198,10 @@
           "title": "Secret Access Key",
           "error": "Secret Access Key 是必需的。"
         },
+        "sessionToken": {
+          "title": "Session Token",
+          "error": "Session Token 是必需的。"
+        },
         "publicUrl": {
           "title": "Public URL",
           "optional": "可选",

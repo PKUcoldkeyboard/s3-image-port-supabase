@@ -198,6 +198,10 @@
           "title": "Secret Access Key",
           "error": "Your secret access key is required."
         },
+        "sessionToken": {
+          "title": "Session Token",
+          "description": "Your session token is required."
+        },
         "publicUrl": {
           "title": "Public URL",
           "optional": "Optional",

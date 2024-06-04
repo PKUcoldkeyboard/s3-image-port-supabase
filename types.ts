@@ -18,6 +18,7 @@ export interface S3Settings {
   region: string;
   accKeyId: string;
   secretAccKey: string;
+  sessionToken: string;
   pubUrl: string;
 }
 
@@ -27,6 +28,7 @@ export const s3SettingsSchema = z.object({
   region: z.string().min(1, "Required"),
   accKeyId: z.string().min(1, "Required"),
   secretAccKey: z.string().min(1, "Required"),
+  sessionToken: z.string().min(1, "Required"),
   pubUrl: z.union([z.string().url(), z.string().length(0)]),
 });
 
