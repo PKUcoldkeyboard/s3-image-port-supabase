@@ -52,7 +52,18 @@
         <UIcon name="i-mingcute-information-line" class="text-white w-5 h-5" />
       </PhotoCardInfo>
     </div>
+    <!-- if it is PDF file, show the preview button -->
     <UButton
+      v-if="isPdf"
+      aria-label="Priview PDF"
+      icon="i-mingcute-eye-2-line"
+      color="gray"
+      class="absolute bottom-4 right-4 hover-to-show"
+      @click="previewPdf(photo.url)"
+    />
+
+    <UButton
+      v-else
       :aria-label="selectMode ? 'Open fullscreen' : 'Copy Link'"
       :icon="selectMode ? 'i-mingcute-zoom-in-line' : 'i-mingcute-copy-2-line'"
       color="gray"
@@ -64,6 +75,7 @@
         }
       "
     />
+
     <UModal v-model="modalOpen" fullscreen>
       <PhotoCardModal
         v-model="selected"
@@ -81,6 +93,7 @@
 
 <script setup lang="ts">
 import { type Photo } from "~/types";
+const router = useRouter();
 const loadedImage = ref<null | HTMLImageElement>(null);
 const rootDiv = ref<HTMLDivElement | null>(null);
 const props = defineProps<{
@@ -137,16 +150,27 @@ onMounted(() => {
     onImageLoad();
   }
 });
+
+const isPdf = computed(() => props.photo.Key.endsWith(".pdf"));
+
+// preview the PDF file
+function previewPdf(url: string) {
+  router.push({
+    path: "/pdf-viewer",
+    query: { url: url },
+  });
+}
 </script>
 
 <style scoped lang="postcss">
 @tailwind utilities;
+
 @layer utilities {
   .hover-to-show {
-    @apply pointer-events-none group-hover:pointer-events-auto focus-visible:pointer-events-auto
-     opacity-0 group-hover:opacity-100 focus-within:opacity-100 focus-visible:opacity-100 transition-opacity duration-200;
+    @apply pointer-events-none group-hover:pointer-events-auto focus-visible:pointer-events-auto opacity-0 group-hover:opacity-100 focus-within:opacity-100 focus-visible:opacity-100 transition-opacity duration-200;
   }
 }
+
 .v-enter-active {
   transition: opacity 0.2s ease;
 }
