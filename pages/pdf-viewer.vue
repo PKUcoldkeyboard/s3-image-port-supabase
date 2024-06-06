@@ -1,11 +1,13 @@
 <template>
   <UContainer class="w-full space-y-4">
     <div class="flex justify-center">
-      <span
-        class="text-center text-xl font-bold bg-gradient-to-r from-purple-400 to-purple-700 text-transparent bg-clip-text"
-      >
-        {{ pdfUrl.substring(pdfUrl.lastIndexOf("/") + 1) }}</span
-      >
+      <a :href="pdfUrl">
+        <span
+          class="text-center text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-700 text-transparent bg-clip-text"
+        >
+          {{ pdfUrl.substring(pdfUrl.lastIndexOf("/") + 1) }}</span
+        >
+      </a>
     </div>
     <canvas id="the-canvas" class="mx-auto"></canvas>
     <UPagination

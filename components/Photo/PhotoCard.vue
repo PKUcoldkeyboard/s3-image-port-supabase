@@ -9,7 +9,7 @@
       <div v-show="showImg" class="bg-gray-200">
         <img
           ref="loadedImage"
-          :src="photo.url"
+          :src="imgSrc"
           class="h-full w-full transition-all"
           :class="selected && 'scale-90 rounded-lg'"
           @load="onImageLoad"
@@ -160,6 +160,10 @@ function previewPdf(url: string) {
     query: { url: url },
   });
 }
+
+const imgSrc = computed(() => {
+  return isPdf.value ? "/Pdf-file.jpg" : props.photo.url;
+});
 </script>
 
 <style scoped lang="postcss">
