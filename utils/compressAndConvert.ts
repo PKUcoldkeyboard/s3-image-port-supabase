@@ -1,6 +1,10 @@
 import imageCompression from "browser-image-compression";
 
 export default async function (file: File): Promise<File> {
+  // 如果不是图片文件，直接返回
+  if (!file.type.startsWith("image/")) {
+    return file;
+  }
   const { appSettings } = useValidSettings();
   let fileType = file.type;
   switch (appSettings.value.convertType) {
