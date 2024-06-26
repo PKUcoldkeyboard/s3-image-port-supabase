@@ -22,7 +22,7 @@
                     copy() && toast.add({ title: $t('upload.message.copied') })
                   "
                 >
-                  {{ link.link }}
+                  <span class="truncate">{{ link.link }}</span>
                 </UButton>
               </UseClipboard>
             </li>
@@ -41,7 +41,7 @@
                     copy() && toast.add({ title: $t('upload.message.copied') })
                   "
                 >
-                  {{ link.markdown }}
+                  <span class="truncate">{{ link.markdown }}</span>
                 </UButton>
               </UseClipboard>
             </li>
